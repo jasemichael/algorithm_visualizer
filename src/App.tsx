@@ -1,4 +1,4 @@
-import {AlgorithmMenuPage, SortingAlgorithmsPage, BubbleSortPage, InsertionSortPage} from "./pages";
+import {AlgorithmMenuPage, SortingAlgorithmsPage, BubbleSortPage, InsertionSortPage, SelectionSortPage} from "./pages";
 import {Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
         <Route path="/" element={<AlgorithmMenuPage />}/>
         <Route path="/sorting/bubble" element={<BubbleSortPage />}/>
         <Route path="/sorting/insertion" element={<InsertionSortPage />} />
+        <Route path="/sorting/selection" element={<SelectionSortPage />} />
         <Route path="/sorting" element={<SortingAlgorithmsPage />} />
       </Routes>
     </div>
