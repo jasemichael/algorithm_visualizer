@@ -1,0 +1,9 @@
+export {default as sortingImage} from './sorting_algorithm.jpg';
+export {default as bstImage} from './bst_algorithm.png';
+export {default as graphImage} from './graph_algorithm.png';
+export {default as bubbleSortImage} from './bubble_sort.png';
+export {default as insertionSortImage} from './insertion_sort.jpg';
+export {default as selectionSortImage} from './selection_sort.png';
+export {default as mergeSortImage} from './merge_sort.png';
+export {default as shellSortImage} from './shell_sort.png';
+export {default as quickSortImage} from './quick_sort.jpg';
