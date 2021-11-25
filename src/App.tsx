@@ -1,9 +1,13 @@
-import AlgorithmMenuPage from "./pages/AlgorithmMenuPage";
+import {AlgorithmMenuPage, SortingAlgorithmsPage} from "./pages";
+import {Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <AlgorithmMenuPage />
+      <Routes>
+        <Route path="/" element={<AlgorithmMenuPage />}/>
+        <Route path="/sorting" element={<SortingAlgorithmsPage />}/>
+      </Routes>
     </div>
   );
 }
