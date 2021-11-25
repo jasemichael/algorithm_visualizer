@@ -8,7 +8,7 @@ interface Props {
     redirectTo: string
 }
 
-const AlgorithmMenuItem = ({title, imageSrc, imageAlt, redirectTo}: Props) => {
+const MenuItem = ({title, imageSrc, imageAlt, redirectTo}: Props) => {
 
     const StyledLink = styled(Link)`
         color: black;
@@ -40,4 +40,4 @@ const AlgorithmMenuItem = ({title, imageSrc, imageAlt, redirectTo}: Props) => {
     );
 }
 
-export default AlgorithmMenuItem;
+export default MenuItem;
