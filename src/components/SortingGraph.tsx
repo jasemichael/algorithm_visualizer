@@ -5,7 +5,7 @@ import { createArrayFromNum, randomize } from "../logic";
 
 interface Props {
     numElements: number,
-    sortAlgorithm: (array: {number: number, active: boolean}[], setArray: React.Dispatch<React.SetStateAction<{number: number, active: boolean}[]>>) => {number: number, active: boolean}[]
+    sortAlgorithm: (array: {number: number, active: boolean}[]) => {number: number, active: boolean}[][]
 }
 
 const Graph = styled.div`
@@ -22,17 +22,25 @@ const CenteredButtons = styled.div`
 
 const SortingGraph = ({numElements, sortAlgorithm}: Props) => {
     const [array, setArray] = useState(randomize(createArrayFromNum(numElements)));
+    const [intervalId, setIntervalId] = useState<any>(-1);
     const barWeight = numElements*0.009;
+
+    const iterate = (queue: any[]) => {
+        setArray([...queue.shift()]);
+        if (queue.length === 0) {
+            clearInterval(intervalId);
+        }
+    }
 
     return (
         <div>
             <Graph>
                 {array.map(a => 
-                    <SortingBar key={a.number} height={a.number} weight={barWeight} active={a.active}/>
+                    <SortingBar height={a.number} weight={barWeight} active={a.active}/>
                 )}
             </Graph>
             <CenteredButtons>
-                <button onClick={() => sortAlgorithm(array, setArray)}>Sort</button>
+                <button onClick={() => setIntervalId(setInterval(iterate, 1, sortAlgorithm(array)))}>Sort</button>
                 <button onClick={() => setArray(randomize([...array]))}>Randomize</button>
             </CenteredButtons>
         </div>
