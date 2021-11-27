@@ -1,6 +1,6 @@
 import { Page, SortingGraph } from "../components";
 import styled from 'styled-components';
-import { insertionSort } from "../logic";
+import { selectionSort } from "../logic";
 
 const InsertionSortPage = () => {
     const H1 = styled.h1`
@@ -9,7 +9,7 @@ const InsertionSortPage = () => {
     return (
         <Page title="Selection Sort">
             <H1>Selection Sort</H1>
-            <SortingGraph numElements={100} sortAlgorithm={insertionSort}/>
+            <SortingGraph numElements={100} sortAlgorithm={selectionSort}/>
         </Page>
     );
 }
