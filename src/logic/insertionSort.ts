@@ -1,5 +1,7 @@
-function insertionSort(array: {number: number, active: boolean}[]) {
-    var queue = []
+import { Dispatch, SetStateAction } from "react";
+import { sleep } from '.';
+
+async function insertionSort(array: {number: number, active: boolean}[], setArray: Dispatch<SetStateAction<{number: number, active: boolean}[]>>) {
     for(var i=0; i<array.length-1; i++) {
         if(array[i]["number"] > array[i+1]["number"]) {
             var firstElement = array[i];
@@ -15,9 +17,10 @@ function insertionSort(array: {number: number, active: boolean}[]) {
                 }
             }
         }
-        queue.push([...array]);
+        setArray([...array]);
+        await sleep(1);
     }
-    return queue;
+    return array;
 }
 
 export default insertionSort;

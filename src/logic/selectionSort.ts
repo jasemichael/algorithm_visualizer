@@ -1,5 +1,7 @@
-function selectionSort(array: {number: number, active: boolean}[]) {
-    var queue = [];
+import { Dispatch, SetStateAction } from "react";
+import { sleep } from '.';
+
+async function selectionSort(array: {number: number, active: boolean}[], setArray: Dispatch<SetStateAction<{number: number, active: boolean}[]>>) {
     for(var i=0; i<array.length; i++) {
         // find smallest element's index
         var minIndex = i;
@@ -11,9 +13,10 @@ function selectionSort(array: {number: number, active: boolean}[]) {
         var element = array[i];
         array[i] = array[minIndex];
         array[minIndex] = element;
-        queue.push([...array])
+        setArray([...array]);
+        await sleep(1);
     }
-    return queue;
+    return array;
 }
 
 export default selectionSort;

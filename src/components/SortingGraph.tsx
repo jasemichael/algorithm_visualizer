@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styled from "styled-components";
 import { SortingBar } from ".";
 import { createArrayFromNum, randomize } from "../logic";
 
 interface Props {
     numElements: number,
-    sortAlgorithm: (array: {number: number, active: boolean}[]) => {number: number, active: boolean}[][]
+    sortAlgorithm: (array: {number: number, active: boolean}[], setArray: Dispatch<SetStateAction<{number: number, active: boolean}[]>>) => Promise<{number: number, active: boolean}[]>
 }
 
 const Graph = styled.div`
@@ -22,15 +22,7 @@ const CenteredButtons = styled.div`
 
 const SortingGraph = ({numElements, sortAlgorithm}: Props) => {
     const [array, setArray] = useState(randomize(createArrayFromNum(numElements)));
-    const [intervalId, setIntervalId] = useState<any>(-1);
     const barWeight = numElements*0.009;
-
-    const iterate = (queue: any[]) => {
-        setArray([...queue.shift()]);
-        if (queue.length === 0) {
-            clearInterval(intervalId);
-        }
-    }
 
     return (
         <div>
@@ -40,7 +32,7 @@ const SortingGraph = ({numElements, sortAlgorithm}: Props) => {
                 )}
             </Graph>
             <CenteredButtons>
-                <button onClick={() => setIntervalId(setInterval(iterate, 1, sortAlgorithm(array)))}>Sort</button>
+                <button onClick={() => sortAlgorithm(array, setArray)}>Sort</button>
                 <button onClick={() => setArray(randomize([...array]))}>Randomize</button>
             </CenteredButtons>
         </div>
